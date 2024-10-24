@@ -51,13 +51,13 @@ async def on_member_join(member):
         invite_counts[inviter_id] += 1
         save_invite_data()
 
-        channel = bot.get_channel(1298917613728043028)
+        channel = bot.get_channel(ID)
         await channel.send(f"👋 {member.mention} vient de rejoindre!\n"
                          f"➡️ Invité par: {inviter.mention}\n"
                          f"📊 {inviter.mention} a maintenant {invite_counts[inviter_id]} invitations!")
 
         if invite_counts[inviter_id] == 5:
-            role = member.guild.get_role(1299022977387593798)
+            role = member.guild.get_role(ID)
             if role:
                 await inviter.add_roles(role)
                 await channel.send(f"🎉 Félicitations {inviter.mention} ! Tu as atteint 5 invitations et reçois le rôle **{role.name}**!")
