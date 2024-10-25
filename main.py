@@ -70,7 +70,7 @@ async def on_member_join(member):
 async def on_member_remove(member):
     for invite in guild_invites[member.guild.id]:
         if str(invite.inviter.id) in invite_counts:
-            channel = bot.get_channel(1298917613728043028)
+            channel = bot.get_channel(ID)
             await channel.send(f"👋 **{member.display_name}** vient de quitter le serveur.\n"
                              f"➡️ Il avait été invité par: {invite.inviter.mention}")
             break
@@ -97,7 +97,7 @@ async def give_invites(ctx, member: discord.Member, amount: int):
     
     # Vérifier si le membre atteint 5 invitations après l'ajout
     if invite_counts[member_id] >= 5 and (invite_counts[member_id] - amount) < 5:
-        role = ctx.guild.get_role(1299022977387593798)
+        role = ctx.guild.get_role(ID)
         if role and role not in member.roles:
             await member.add_roles(role)
             await ctx.send(f"🎉 {member.mention} a reçu le rôle **{role.name}** car il a atteint 5 invitations!")
@@ -122,7 +122,7 @@ async def remove_invites(ctx, member: discord.Member, amount: int):
     
     # Vérifier si le membre passe sous 5 invitations après la suppression
     if invite_counts[member_id] < 5 and (invite_counts[member_id] + amount) >= 5:
-        role = ctx.guild.get_role(1299022977387593798)
+        role = ctx.guild.get_role(ID DU ROLE)
         if role and role in member.roles:
             await member.remove_roles(role)
             await ctx.send(f"⚠️ {member.mention} a perdu le rôle {role.name} car il est passé sous 5 invitations!")
